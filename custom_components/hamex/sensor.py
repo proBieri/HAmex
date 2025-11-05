@@ -65,14 +65,14 @@ async def async_setup_entry(
                 HAmexRemainingDaysSensor(coordinator, sensor_id, tank_id, tank_name, entry)
             )
 
-        # Add total/summary sensors (virtual device)
-        if len(coordinator.data["Items"]) > 0:
+        # Add total/summary sensors (virtual device) only if multiple tanks exist
+        if len(coordinator.data["Items"]) > 1:
             entities.append(HAmexTotalVolumeSensor(coordinator, entry))
             entities.append(HAmexTotalPercentageSensor(coordinator, entry))
             entities.append(HAmexTotalUsageSensor(coordinator, entry))
             entities.append(HAmexTotalRemainingDaysSensor(coordinator, entry))
 
-        # Add price sensors to virtual device
+        # Add price sensors to summary/info device (always, independent of tank count)
         if "PriceComparedToYesterdayPercentage" in coordinator.data:
             entities.append(HAmexPriceComparisonSensor(coordinator, entry))
 

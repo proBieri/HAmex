@@ -16,14 +16,18 @@ Jeder physische Tank wird als eigenes Gerät angelegt mit folgenden Sensoren:
 - **Verbrauch** (L/Tag) - Durchschnittlicher täglicher Verbrauch
 - **Reichweite** (Tage) - Geschätzte verbleibende Tage bis Tank leer
 
-#### Virtuelles "Gesamt" Gerät
-Zusammenfassung aller Tanks mit Gesamtwerten:
+#### Virtuelles "Heizöl Gesamt" Gerät (nur bei mehreren Tanks)
+Zusammenfassung aller Tanks mit Gesamtwerten (wird nur erstellt, wenn mindestens 2 Tanks vorhanden sind):
 - **Gesamtvolumen** (L) - Summe aller Tanks
 - **Gesamtfüllstand** (%) - Gewichteter Durchschnitt
 - **Gesamtverbrauch** (L/Tag) - Systemverbrauch
 - **Gesamtreichweite** (Tage) - Geschätzte Restdauer
+
+Zusätzlich werden Preis-Sensoren angelegt (in separatem Gerät):
 - **Preis Vergleich** (%) - Preisänderung zu gestern
 - **Preis Prognose** (%) - Erwartete Preisentwicklung
+
+**Hinweis:** Bei nur einem Tank wird kein Gesamt-Gerät erstellt, da die Werte identisch wären.
 
 Alle Sensoren enthalten zusätzliche Attribute mit detaillierten Informationen.
 
