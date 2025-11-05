@@ -4,19 +4,28 @@ Diese Integration ermöglicht es, Daten vom Heizoel24 MEX Dashboard in Home Assi
 
 ## Features
 
-Die Integration erstellt automatisch folgende Sensoren **für jeden MEX-Tank**:
+### 🏠 Geräte-Struktur
 
+Die Integration erstellt automatisch separate **Geräte** für bessere Organisation:
+
+#### Pro Tank (z.B. "Tank R", "Tank L")
+Jeder physische Tank wird als eigenes Gerät angelegt mit folgenden Sensoren:
 - **Füllstand** (%) - Aktueller Füllstand in Prozent
-- **Volumen** (Liter) - Aktuelle Füllmenge in Litern
+- **Volumen** (L) - Aktuelle Füllmenge in Litern
 - **Batterie** (%) - Batteriestand des MEX-Sensors
 - **Verbrauch** (L/Tag) - Durchschnittlicher täglicher Verbrauch
 - **Reichweite** (Tage) - Geschätzte verbleibende Tage bis Tank leer
 
-Zusätzliche Sensoren:
-- **Heizöl Preis Vergleich** - Preisänderung im Vergleich zu gestern
-- **Heizöl Preis Prognose** - Preisprognose
+#### Virtuelles "Heizöl Gesamt" Gerät
+Zusammenfassung aller Tanks mit Gesamtwerten:
+- **Gesamtvolumen** (L) - Summe aller Tanks
+- **Gesamtfüllstand** (%) - Gewichteter Durchschnitt
+- **Gesamtverbrauch** (L/Tag) - Systemverbrauch
+- **Gesamtreichweite** (Tage) - Geschätzte Restdauer
+- **Preis Vergleich** (%) - Preisänderung zu gestern
+- **Preis Prognose** (%) - Erwartete Preisentwicklung
 
-Alle Sensoren enthalten zusätzliche Attribute mit detaillierten Informationen wie Tankname, maximales Volumen, Jahresverbrauch, letzter Messung, etc.
+Alle Sensoren enthalten zusätzliche Attribute mit detaillierten Informationen.
 
 ## Installation
 

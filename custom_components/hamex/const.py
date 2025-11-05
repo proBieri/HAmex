@@ -11,4 +11,4 @@ CONF_USERNAME = "username"
 CONF_PASSWORD = "password"
 
 # Update interval
-UPDATE_INTERVAL = 300  # 5 minutes
+UPDATE_INTERVAL = 3600  # 60 minutes

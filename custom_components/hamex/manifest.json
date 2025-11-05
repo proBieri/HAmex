@@ -1,9 +1,9 @@
 {
   "domain": "hamex",
-  "name": "HAmex",
-  "codeowners": ["@yourusername"],
+  "name": "HAmex - Heizöl24 MEX HA Integration",
+  "codeowners": ["@proBieri"],
   "config_flow": true,
-  "documentation": "https://github.com/yourusername/hamex",
+  "documentation": "https://github.com/proBieri/HAmex/",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
   "requirements": [],
