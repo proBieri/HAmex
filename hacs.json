@@ -1,5 +1,5 @@
 {
-  "name": "HAmex",
+  "name": "HAmex - Heizoel24 MEX Integration (inoffical)",
   "render_readme": true,
   "domains": ["sensor"],
   "homeassistant": "2024.1.0"

@@ -1,14 +1,14 @@
-# HAmex - Home Assistant Integration für Heizoel24 MEX
+# HAmex - Home Assistant Integration für Heizoel24 MEX (Inoffiziell)
 
 Diese Integration ermöglicht es, Daten vom Heizoel24 MEX Dashboard in Home Assistant zu integrieren und Ihre Heizöltanks zu überwachen.
 
 ## Features
 
-### 🏠 Geräte-Struktur
+### Geräte-Struktur
 
 Die Integration erstellt automatisch separate **Geräte** für bessere Organisation:
 
-#### Pro Tank (z.B. "Tank R", "Tank L")
+#### Pro Tank (z.B. "Tank 1", "Tank 2")
 Jeder physische Tank wird als eigenes Gerät angelegt mit folgenden Sensoren:
 - **Füllstand** (%) - Aktueller Füllstand in Prozent
 - **Volumen** (L) - Aktuelle Füllmenge in Litern
@@ -16,7 +16,7 @@ Jeder physische Tank wird als eigenes Gerät angelegt mit folgenden Sensoren:
 - **Verbrauch** (L/Tag) - Durchschnittlicher täglicher Verbrauch
 - **Reichweite** (Tage) - Geschätzte verbleibende Tage bis Tank leer
 
-#### Virtuelles "Heizöl Gesamt" Gerät
+#### Virtuelles "Gesamt" Gerät
 Zusammenfassung aller Tanks mit Gesamtwerten:
 - **Gesamtvolumen** (L) - Summe aller Tanks
 - **Gesamtfüllstand** (%) - Gewichteter Durchschnitt
@@ -59,7 +59,7 @@ Die Integration verwendet Cookie-basierte Authentifizierung und erstellt automat
 
 ### Authentifizierung
 
-Die Integration nutzt die offizielle Heizoel24 Web-API mit Cookie-basierter Session-Verwaltung:
+Die Integration nutzt die Heizoel24 Web-API mit Cookie-basierter Session-Verwaltung:
 - Login erfolgt über `https://www.heizoel24.de/api/account/anmelden`
 - Session-Cookies werden automatisch verwaltet
 - Bei Ablauf erfolgt automatische Re-Authentifizierung
@@ -71,16 +71,16 @@ Die Integration nutzt die offizielle Heizoel24 Web-API mit Cookie-basierter Sess
 
 ### Update-Intervall
 
-Standard: **300 Sekunden (5 Minuten)**
+Standard: **3600 Sekunden (60 Minuten)**
 
 ## Anpassung
 
 ### Update-Intervall ändern
 
-Das Standard-Update-Intervall beträgt 300 Sekunden (5 Minuten). Um dies zu ändern, bearbeiten Sie die Datei `const.py`:
+Das Standard-Update-Intervall beträgt 3600 Sekunden (60 Minuten). Um dies zu ändern, bearbeiten Sie die Datei `const.py`:
 
 ```python
-UPDATE_INTERVAL = 300  # Sekunden
+UPDATE_INTERVAL = 3600  # Sekunden
 ```
 
 ### Sensor-Namen anpassen
@@ -102,6 +102,18 @@ logger:
 
 Bei Problemen oder Fragen erstellen Sie bitte ein Issue auf GitHub.
 
+
+
+## Spenden
+
+Falls sie mir einen Kaffee (oder natürlich ein paar Liter Heizöl) spenden möchten.. 
+
+[![Buy Me a Coffee](https://img.shields.io/badge/-Buy%20me%20a%20coffee-%23ffdd00?style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/probieri)
+
+
+## Copyright
+Alle Rechte an den API's und den verwendeten Icons liegen bei https://www.heizoel24.de
+
 ## Lizenz
 
-MIT License
+MIT License.

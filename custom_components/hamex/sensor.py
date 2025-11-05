@@ -99,7 +99,7 @@ def _get_summary_device_info(entry: ConfigEntry) -> DeviceInfo:
         identifiers={(DOMAIN, f"summary_{entry.entry_id}")},
         name="Heizöl Gesamt",
         manufacturer="Heizoel24",
-        model="HAmex Summary",
+        model="MEX Summary",
         via_device=(DOMAIN, entry.entry_id),
     )
 
