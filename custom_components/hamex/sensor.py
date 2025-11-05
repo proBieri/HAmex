@@ -186,13 +186,16 @@ class HAmexTankVolumeSensor(CoordinatorEntity, SensorEntity):
         self._attr_device_class = SensorDeviceClass.VOLUME
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_icon = "mdi:oil-temperature"
+        self._attr_suggested_display_precision = 0
         self._attr_device_info = _get_tank_device_info(tank_id, tank_name, entry)
 
     @property
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
         tank = self._get_tank_data()
-        return tank.get("CurrentVolume") if tank else None
+        if tank and tank.get("CurrentVolume") is not None:
+            return int(tank.get("CurrentVolume"))
+        return None
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
@@ -388,6 +391,7 @@ class HAmexTotalVolumeSensor(CoordinatorEntity, SensorEntity):
         self._attr_device_class = SensorDeviceClass.VOLUME
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_icon = "mdi:oil-temperature"
+        self._attr_suggested_display_precision = 0
         self._attr_device_info = _get_summary_device_info(entry)
 
     @property
@@ -396,8 +400,8 @@ class HAmexTotalVolumeSensor(CoordinatorEntity, SensorEntity):
         if not self.coordinator.data or "Items" not in self.coordinator.data:
             return None
 
-        total = sum(tank.get("CurrentVolume", 0) for tank in self.coordinator.data["Items"])
-        return total if total > 0 else None
+        total = sum(int(tank.get("CurrentVolume", 0)) for tank in self.coordinator.data["Items"])
+        return int(total) if total > 0 else None
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
