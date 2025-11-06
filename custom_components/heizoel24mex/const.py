@@ -1,6 +1,6 @@
 """Constants for the HAmex integration."""
 
-DOMAIN = "hamex"
+DOMAIN = "heizoel24mex"
 
 # API endpoints
 API_LOGIN_URL = "https://www.heizoel24.de/api/account/anmelden"

@@ -1,5 +1,5 @@
 {
-  "domain": "hamex",
+  "domain": "heizoel24mex",
   "name": "Heizoel24 MEX Integration",
   "codeowners": ["@proBieri"],
   "config_flow": true,
