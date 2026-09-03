@@ -82,10 +82,10 @@ async def async_setup_entry(
     async_add_entities(entities)
 
 
-def _get_tank_device_info(tank_id: int, tank_name: str, entry: ConfigEntry) -> DeviceInfo:
+def _get_tank_device_info(sensor_id: int, tank_name: str, entry: ConfigEntry) -> DeviceInfo:
     """Get device info for a tank."""
     return DeviceInfo(
-        identifiers={(DOMAIN, f"tank_{tank_id}")},
+        identifiers={(DOMAIN, f"sensor_{sensor_id}")},
         name=tank_name,
         manufacturer="Heizoel24",
         model="MEX Sensor",
@@ -130,7 +130,7 @@ class HAmexTankPercentageSensor(CoordinatorEntity, SensorEntity):
         self._attr_native_unit_of_measurement = PERCENTAGE
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_icon = "mdi:gauge"
-        self._attr_device_info = _get_tank_device_info(tank_id, tank_name, entry)
+        self._attr_device_info = _get_tank_device_info(sensor_id, tank_name, entry)
 
     @property
     def native_value(self) -> float | None:
@@ -187,7 +187,7 @@ class HAmexTankVolumeSensor(CoordinatorEntity, SensorEntity):
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_icon = "mdi:oil-temperature"
         self._attr_suggested_display_precision = 0
-        self._attr_device_info = _get_tank_device_info(tank_id, tank_name, entry)
+        self._attr_device_info = _get_tank_device_info(sensor_id, tank_name, entry)
 
     @property
     def native_value(self) -> int | None:
@@ -242,7 +242,7 @@ class HAmexBatterySensor(CoordinatorEntity, SensorEntity):
         self._attr_native_unit_of_measurement = PERCENTAGE
         self._attr_device_class = SensorDeviceClass.BATTERY
         self._attr_state_class = SensorStateClass.MEASUREMENT
-        self._attr_device_info = _get_tank_device_info(tank_id, tank_name, entry)
+        self._attr_device_info = _get_tank_device_info(sensor_id, tank_name, entry)
 
     @property
     def native_value(self) -> int | None:
@@ -293,7 +293,7 @@ class HAmexUsageSensor(CoordinatorEntity, SensorEntity):
         self._attr_native_unit_of_measurement = "L/Tag"
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_icon = "mdi:chart-line"
-        self._attr_device_info = _get_tank_device_info(tank_id, tank_name, entry)
+        self._attr_device_info = _get_tank_device_info(sensor_id, tank_name, entry)
 
     @property
     def native_value(self) -> float | None:
@@ -335,7 +335,7 @@ class HAmexRemainingDaysSensor(CoordinatorEntity, SensorEntity):
         self._attr_native_unit_of_measurement = "Tage"
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_icon = "mdi:calendar-clock"
-        self._attr_device_info = _get_tank_device_info(tank_id, tank_name, entry)
+        self._attr_device_info = _get_tank_device_info(sensor_id, tank_name, entry)
 
     @property
     def native_value(self) -> int | None:
