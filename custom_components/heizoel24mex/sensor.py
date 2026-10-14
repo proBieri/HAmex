@@ -299,9 +299,22 @@ class HAmexUsageSensor(CoordinatorEntity, SensorEntity):
     def native_value(self) -> float | None:
         """Return the state of the sensor."""
         tank = self._get_tank_data()
-        if tank and tank.get("Usage"):
-            return round(tank.get("Usage"), 2)
+        if tank and tank.get("EffectiveUsage") is not None:
+            return round(tank.get("EffectiveUsage"), 2)
         return None
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        """Return additional state attributes."""
+        tank = self._get_tank_data()
+        if not tank:
+            return {}
+
+        return {
+            "api_usage": tank.get("Usage"),
+            "volume_unchanged_since": tank.get("VolumeUnchangedSince"),
+            "idle": tank.get("UsageIdle"),
+        }
 
     def _get_tank_data(self) -> dict[str, Any] | None:
         """Get tank data from coordinator."""
@@ -474,10 +487,15 @@ class HAmexTotalUsageSensor(CoordinatorEntity, SensorEntity):
         if not self.coordinator.data or "Items" not in self.coordinator.data:
             return None
 
-        # Sum usage from all tanks (they all report the same usage rate)
-        # We take the first tank's usage as it represents the combined system
-        first_tank = self.coordinator.data["Items"][0]
-        usage = first_tank.get("Usage")
+        tanks = self.coordinator.data["Items"]
+
+        # No consumption if no tank level has changed recently
+        if all(tank.get("UsageIdle") for tank in tanks):
+            return 0.0
+
+        # All tanks report the same usage rate; the first tank's usage
+        # represents the combined system
+        usage = tanks[0].get("Usage")
 
         if usage:
             return round(usage, 2)

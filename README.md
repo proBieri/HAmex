@@ -13,7 +13,7 @@ Jeder physische Tank wird als eigenes Gerät angelegt mit folgenden Sensoren:
 - **Füllstand** (%) - Aktueller Füllstand in Prozent
 - **Volumen** (L) - Aktuelle Füllmenge in Litern
 - **Batterie** (%) - Batteriestand des MEX-Sensors
-- **Verbrauch** (L/Tag) - Durchschnittlicher täglicher Verbrauch
+- **Verbrauch** (L/Tag) - Durchschnittlicher täglicher Verbrauch; 0, wenn sich der Tankstand seit 24 h nicht verändert hat (Toleranz ±2 L)
 - **Reichweite** (Tage) - Geschätzte verbleibende Tage bis Tank leer
 
 #### Virtuelles "Heizöl Gesamt" Gerät (nur bei mehreren Tanks)
@@ -105,14 +105,6 @@ logger:
 ## Support
 
 Bei Problemen oder Fragen erstellen Sie bitte ein Issue auf GitHub.
-
-
-
-## Spenden
-
-Falls sie mir einen Kaffee (oder natürlich ein paar Liter Heizöl) spenden möchten.. 
-
-[![Buy Me a Coffee](https://img.shields.io/badge/-Buy%20me%20a%20coffee-%23ffdd00?style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/probieri)
 
 
 ## Copyright
