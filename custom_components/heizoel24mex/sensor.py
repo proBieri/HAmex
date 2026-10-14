@@ -125,6 +125,7 @@ class HAmexTankPercentageSensor(CoordinatorEntity, SensorEntity):
         self._sensor_id = sensor_id
         self._tank_id = tank_id
         self._tank_name = tank_name
+        self._attr_has_entity_name = True
         self._attr_name = "Füllstand"
         self._attr_unique_id = f"{DOMAIN}_{sensor_id}_percentage"
         self._attr_native_unit_of_measurement = PERCENTAGE
@@ -180,6 +181,7 @@ class HAmexTankVolumeSensor(CoordinatorEntity, SensorEntity):
         self._sensor_id = sensor_id
         self._tank_id = tank_id
         self._tank_name = tank_name
+        self._attr_has_entity_name = True
         self._attr_name = "Volumen"
         self._attr_unique_id = f"{DOMAIN}_{sensor_id}_volume"
         self._attr_native_unit_of_measurement = UnitOfVolume.LITERS
@@ -237,6 +239,7 @@ class HAmexBatterySensor(CoordinatorEntity, SensorEntity):
         self._sensor_id = sensor_id
         self._tank_id = tank_id
         self._tank_name = tank_name
+        self._attr_has_entity_name = True
         self._attr_name = "Batterie"
         self._attr_unique_id = f"{DOMAIN}_{sensor_id}_battery"
         self._attr_native_unit_of_measurement = PERCENTAGE
@@ -288,6 +291,7 @@ class HAmexUsageSensor(CoordinatorEntity, SensorEntity):
         self._sensor_id = sensor_id
         self._tank_id = tank_id
         self._tank_name = tank_name
+        self._attr_has_entity_name = True
         self._attr_name = "Verbrauch"
         self._attr_unique_id = f"{DOMAIN}_{sensor_id}_usage"
         self._attr_native_unit_of_measurement = "L/Tag"
@@ -343,6 +347,7 @@ class HAmexRemainingDaysSensor(CoordinatorEntity, SensorEntity):
         self._sensor_id = sensor_id
         self._tank_id = tank_id
         self._tank_name = tank_name
+        self._attr_has_entity_name = True
         self._attr_name = "Reichweite"
         self._attr_unique_id = f"{DOMAIN}_{sensor_id}_remaining_days"
         self._attr_native_unit_of_measurement = "Tage"
@@ -398,6 +403,7 @@ class HAmexTotalVolumeSensor(CoordinatorEntity, SensorEntity):
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
+        self._attr_has_entity_name = True
         self._attr_name = "Gesamtvolumen"
         self._attr_unique_id = f"{DOMAIN}_total_volume"
         self._attr_native_unit_of_measurement = UnitOfVolume.LITERS
@@ -441,6 +447,7 @@ class HAmexTotalPercentageSensor(CoordinatorEntity, SensorEntity):
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
+        self._attr_has_entity_name = True
         self._attr_name = "Gesamtfüllstand"
         self._attr_unique_id = f"{DOMAIN}_total_percentage"
         self._attr_native_unit_of_measurement = PERCENTAGE
@@ -474,6 +481,7 @@ class HAmexTotalUsageSensor(CoordinatorEntity, SensorEntity):
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
+        self._attr_has_entity_name = True
         self._attr_name = "Gesamtverbrauch"
         self._attr_unique_id = f"{DOMAIN}_total_usage"
         self._attr_native_unit_of_measurement = "L/Tag"
@@ -512,6 +520,7 @@ class HAmexTotalRemainingDaysSensor(CoordinatorEntity, SensorEntity):
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
+        self._attr_has_entity_name = True
         self._attr_name = "Gesamtreichweite"
         self._attr_unique_id = f"{DOMAIN}_total_remaining_days"
         self._attr_native_unit_of_measurement = "Tage"
@@ -547,6 +556,7 @@ class HAmexPriceComparisonSensor(CoordinatorEntity, SensorEntity):
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
+        self._attr_has_entity_name = True
         self._attr_name = "Preis Vergleich"
         self._attr_unique_id = f"{DOMAIN}_price_comparison"
         self._attr_native_unit_of_measurement = PERCENTAGE
@@ -574,6 +584,7 @@ class HAmexPriceForecastSensor(CoordinatorEntity, SensorEntity):
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
+        self._attr_has_entity_name = True
         self._attr_name = "Preis Prognose"
         self._attr_unique_id = f"{DOMAIN}_price_forecast"
         self._attr_native_unit_of_measurement = PERCENTAGE
