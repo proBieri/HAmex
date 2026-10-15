@@ -89,7 +89,6 @@ def _get_tank_device_info(sensor_id: int, tank_name: str, entry: ConfigEntry) ->
         name=tank_name,
         manufacturer="Heizoel24",
         model="MEX Sensor",
-        via_device=(DOMAIN, entry.entry_id),
     )
 
 
@@ -100,7 +99,6 @@ def _get_summary_device_info(entry: ConfigEntry) -> DeviceInfo:
         name="Heizöl Gesamt",
         manufacturer="Heizoel24",
         model="MEX Summary",
-        via_device=(DOMAIN, entry.entry_id),
     )
 
 
@@ -185,7 +183,7 @@ class HAmexTankVolumeSensor(CoordinatorEntity, SensorEntity):
         self._attr_name = "Volumen"
         self._attr_unique_id = f"{DOMAIN}_{sensor_id}_volume"
         self._attr_native_unit_of_measurement = UnitOfVolume.LITERS
-        self._attr_device_class = SensorDeviceClass.VOLUME
+        self._attr_device_class = SensorDeviceClass.VOLUME_STORAGE
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_icon = "mdi:oil-temperature"
         self._attr_suggested_display_precision = 0
@@ -251,7 +249,14 @@ class HAmexBatterySensor(CoordinatorEntity, SensorEntity):
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
         tank = self._get_tank_data()
-        return tank.get("BatteryPercentage") if tank else None
+        if not tank:
+            return None
+
+        # The API occasionally reports implausible values (e.g. -50 %)
+        percentage = tank.get("BatteryPercentage")
+        if percentage is None or not 0 <= percentage <= 100:
+            return None
+        return percentage
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
@@ -262,6 +267,7 @@ class HAmexBatterySensor(CoordinatorEntity, SensorEntity):
 
         return {
             "battery_voltage": tank.get("Battery"),
+            "api_battery_percentage": tank.get("BatteryPercentage"),
         }
 
     def _get_tank_data(self) -> dict[str, Any] | None:
@@ -407,7 +413,7 @@ class HAmexTotalVolumeSensor(CoordinatorEntity, SensorEntity):
         self._attr_name = "Gesamtvolumen"
         self._attr_unique_id = f"{DOMAIN}_total_volume"
         self._attr_native_unit_of_measurement = UnitOfVolume.LITERS
-        self._attr_device_class = SensorDeviceClass.VOLUME
+        self._attr_device_class = SensorDeviceClass.VOLUME_STORAGE
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_icon = "mdi:oil-temperature"
         self._attr_suggested_display_precision = 0
